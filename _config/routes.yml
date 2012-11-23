@@ -1,0 +1,7 @@
+---
+Name: paymentroutes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'Payment_Controller::$URLSegment/$Action/$ID' : 'Payment_Controller'
