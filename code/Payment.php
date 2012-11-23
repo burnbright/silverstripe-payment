@@ -328,7 +328,7 @@ class Payment_Controller extends Page_Controller{
 		if($payment = $this->payment()){
 			$payment->Status = "Success";
 			$payment->write();
-			$this->redirect();
+			$this->resultRedirect();
 			return;
 		}
 	}
@@ -337,19 +337,19 @@ class Payment_Controller extends Page_Controller{
 		if($payment = $this->payment()){
 			$payment->Status = "Failure";
 			$payment->write();
-			$this->redirect();
+			$this->resultRedirect();
 			return;
 		}
 	}
 
-	function redirect(){
+	function resultRedirect(){
 		if($payment = $this->Payment()){
 			if($url = $payment->getReturnURL()){
-				$this->redirect($url);
+				Controller::curr()->redirect($url);
 				return;
 			}
 		}
-		$this->redirect('home');
+		Controller::curr()->redirect('home');
 	}
 
 }
